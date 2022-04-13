@@ -1,0 +1,6 @@
+---
+- name: Initial Settings for AP Server
+  hosts: ec2_AP
+  
+  roles: 
+    - common

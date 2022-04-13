@@ -1,0 +1,13 @@
+---
+- name: execute ping module
+  ping:
+  register: result
+
+- name: execute dubug
+  debug:
+    msg: "{{ result }}"
+
+- name: upgrade all packages
+  yum:
+    name: '*'
+    state: latest
