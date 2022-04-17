@@ -1,6 +1,8 @@
 ---
 - name: Initial Settings for AP Server
   hosts: ec2_AP
+  become: yes
   
   roles: 
     - common
+    - git
