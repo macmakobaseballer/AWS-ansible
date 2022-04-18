@@ -1,0 +1,31 @@
+---
+- name: Install dependencies for rbenv
+  yum: name={{item}}
+    state: present
+    with_items:
+      - gcc
+      - clang
+      - openssl-devel
+      - zlib-devel
+      - mysql-devel
+
+- name: Download rbenv installer
+  shell: curl -fsSL https://github.com/rbenv/rbenv-installer/raw/HEAD/bin/rbenv-installer | bash
+
+- name: Add ~.rbenv/bin to PATH
+  lineinfile: 
+    path: ~/.bash_profile
+    line: 'export PATH="$HOME/.rbenv/bin:$PATH"'
+    state: present
+
+- name: Eval rbenv init in ~/.bash_profile
+  lineinfile: 
+    path: ~/.bash_profile
+    line: 'eval "$(rbenv init -)"'
+
+- name: reload bash_profile
+  shell: source .bash_profile
+
+- name: 
+
+
