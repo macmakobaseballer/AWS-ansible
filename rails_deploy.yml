@@ -1,8 +1,9 @@
 ---
 - name: Initial Settings for AP Server
   hosts: ec2_AP
-  become: yes
-  
+  become: true
+  vars_files: vars.yml
+
   roles: 
     - common
     - git
