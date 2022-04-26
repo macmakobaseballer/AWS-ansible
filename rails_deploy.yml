@@ -6,6 +6,6 @@
 
   roles: 
     - common
-    - git
     - nodejs
     - rbenv
+    - mysql

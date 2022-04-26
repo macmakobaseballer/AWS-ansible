@@ -2,6 +2,7 @@
 - name: Install dependencies for ruby-build
   yum: 
     name:
+      - gcc
       - gcc-c++
       - make
       - patch
@@ -21,7 +22,7 @@
 - name: Install rbenv
   git:
     repo: https://github.com/sstephenson/rbenv.git
-    dest: {{ rbenv_path }}
+    dest: "{{ rbenv_path }}"
   when: rbenv_exists is failed
 
 - name: Add ~.rbenv/bin to PATH
@@ -51,5 +52,8 @@
 - name: Check version ruby version
   shell: bash -lc "ruby -v"
   register: ruby_check_default
-  changed_when: False
   ignore_errors: yes
+
+- name: Display tuby version
+  debug:
+    msg: "{{ruby_check_default.stdout}}"

@@ -1,6 +1,10 @@
 ---
-
 - name: upgrade all packages
   yum:
     name: '*'
-    state: latest
+    state: present
+
+- name: Install Git
+  yum:
+    name: git
+    state: present
