@@ -1,0 +1,34 @@
+---
+- name: Enable to install nginx
+  shell: bash -lc "amazon-linux-extras enable nginx1"
+
+- name: Install nginx
+  yum: 
+    name: nginx
+
+- name: Check nginx version
+  command: nginx -v
+  register: nginx_check_version
+  ignore_errors: yes
+
+- name: Display nginx version
+  debug:
+    msg: "{{nginx_check_version}}"
+
+
+- name: restart nginx
+  command: service nginx restart
+
+- name: Check nginx status
+  command: service nginx status
+  register: nginx_check_status
+  ignore_errors: yes
+
+- name: Display nginx status
+  debug:
+    msg: "{{nginx_check_status.stdout}}"
+
+- name: Copy rails.conf 
+  template:
+    src: rails.conf.j2
+    dest: /etc/nginx/conf.d/rails.conf
