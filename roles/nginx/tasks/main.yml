@@ -13,8 +13,12 @@
 
 - name: Display nginx version
   debug:
-    msg: "{{nginx_check_version}}"
+    msg: "{{ nginx_check_version }}"
 
+- name: Copy rails.conf 
+  template:
+    src: rails.conf.j2
+    dest: /etc/nginx/conf.d/rails.conf
 
 - name: restart nginx
   command: service nginx restart
@@ -26,9 +30,4 @@
 
 - name: Display nginx status
   debug:
-    msg: "{{nginx_check_status.stdout}}"
-
-- name: Copy rails.conf 
-  template:
-    src: rails.conf.j2
-    dest: /etc/nginx/conf.d/rails.conf
+    msg: "{{ nginx_check_status.stdout }}"

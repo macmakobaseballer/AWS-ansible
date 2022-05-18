@@ -4,7 +4,7 @@ upstream unicorn {
 
 server {
   listen 80;
-  server_name 3.39.51.176;
+  server_name {{ nginx_server_name }};
   root /var/www/Tabetalog/public;
 
   location ^~ /assets/ {

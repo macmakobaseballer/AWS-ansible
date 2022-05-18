@@ -19,4 +19,4 @@
 
 - name: Display mysql-client version
   debug:
-    msg: "{{mysql_check_version.stdout}}"
+    msg: "{{ mysql_check_version.stdout }}"
