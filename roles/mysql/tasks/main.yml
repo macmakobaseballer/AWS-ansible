@@ -1,0 +1,22 @@
+---
+- name: Install mysql-client rpm from a remote repo
+  yum:
+    name: https://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm
+    state: present
+
+- name: Import RPM-GPG-KEY
+  shell:  bash -lc "rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022"
+
+- name: Install mysql-client rpm from a local file
+  yum:
+    name: mysql-community-client.x86_64
+    state: present
+
+- name: Check maysql-client version
+  shell: bash -lc "mysql --version"
+  register: mysql_check_version
+  ignore_errors: yes
+
+- name: Display mysql-client version
+  debug:
+    msg: "{{ mysql_check_version.stdout }}"
